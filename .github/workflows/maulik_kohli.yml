@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Databricks CLI
-        uses: databricks/setup-cli@v1
+        uses: databricks/setup-cli@main
 
       - name: Validate Asset Bundle
         run: databricks bundle validate
