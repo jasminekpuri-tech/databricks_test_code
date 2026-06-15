@@ -15,7 +15,15 @@ schema = StructType([
 data = [(1, "Bundle_Test_1"), (2, "Bundle_Test_2")]
 df = spark.createDataFrame(data, schema)
 
-# FIX: Write directly to a DBFS file path instead of a Metastore table
-df.write.format("delta").mode("overwrite").save("dbfs:/tmp/github_bundle_test_data")
-print("Data written successfully directly to DBFS path!")
+# Write directly to the local EC2 node storage
+local_path = "file:/tmp/github_bundle_test_data"
+df.write.format("delta").mode("overwrite").save(local_path)
+print("Data written successfully directly to local EC2 driver node storage!")
+
+# -------------------------------------------------------------
+# NEW CODE: Read it back and print it out to see the output!
+# -------------------------------------------------------------
+print("Reading data back from local disk to verify:")
+read_back_df = spark.read.format("delta").load(local_path)
+read_back_df.show()
 
