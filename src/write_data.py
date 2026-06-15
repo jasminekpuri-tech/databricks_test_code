@@ -16,5 +16,5 @@ df = spark.createDataFrame(data, schema)
 
 # Write out to the default managed table area
 df.write.format("delta").mode("overwrite").saveAsTable("default.github_bundle_test")
-print("Managed table written successfully via DAB!")
+print("Managed table written successfully via the DAB!")
 
