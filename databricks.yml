@@ -5,7 +5,7 @@ targets:
   dev:
     default: true
     mode: development
-      
+
 resources:
   jobs:
     write_test_data_job:
@@ -16,6 +16,10 @@ resources:
             spark_version: 14.3.x-scala2.12
             node_type_id: i3.xlarge
             num_workers: 0
-          spark_python_task:
-            python_file: src/write_data.py
+            spark_conf:
+              spark.databricks.cluster.profile: "singleNode"
+              spark.master: "local[*]"
+          # Changed from spark_python_task to notebook_task:
+          notebook_task:
+            notebook_path: src/write_data.py
 
