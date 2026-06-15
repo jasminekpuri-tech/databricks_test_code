@@ -1,0 +1,22 @@
+bundle:
+  name: test-data-bundle
+
+targets:
+  dev:
+    default: true
+    workspace:
+      host: ${DATABRICKS_HOST}
+
+resources:
+  jobs:
+    write_test_data_job:
+      name: "[Dev] Write Test Data Job"
+      tasks:
+        - task_key: run_python_script
+          new_cluster:
+            spark_version: 14.3.x-scala2.12
+            node_type_id: i3.xlarge
+            num_workers: 0
+          spark_python_task:
+            python_file: src/write_data.py
+
