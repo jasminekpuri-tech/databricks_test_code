@@ -4,9 +4,8 @@ bundle:
 targets:
   dev:
     default: true
-    workspace:
-      host: ${DATABRICKS_HOST}
-
+    mode: development
+      
 resources:
   jobs:
     write_test_data_job:
