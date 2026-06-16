@@ -18,7 +18,7 @@ df = spark.createDataFrame(data, schema)
 # Write directly to the local EC2 node storage
 local_path = "file:/tmp/github_bundle_test_data"
 df.write.format("delta").mode("overwrite").save(local_path)
-print("Data written successfully directly to local EC2 driver node storage!")
+print("Data written successfully directly to local EC2 driver node storages!")
 
 # -------------------------------------------------------------
 # NEW CODE: Read it back and print it out to see the output!
